@@ -2,6 +2,15 @@ package a2;
 
 public final class Compiler {
 
+	static Node compile(Node n) throws Error {
+		Scope s = new Scope();
+		
+		s.declare("printi", new Func(new Type[]{Type.INT}, null));
+
+		resolve(n, s);
+		return n;
+	}
+
 	static void resolve(Node n, Scope s) throws Error {
 
 		if (n instanceof Decl) {
@@ -45,4 +54,3 @@ public final class Compiler {
 		return n.simplify();
 	}
 }
-

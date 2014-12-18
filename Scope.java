@@ -19,15 +19,15 @@ public final class Scope {
 		return s;
 	}
 
-	void declare(Ident ident) throws Error { // TODO: type
+	void declare(Ident ident, Symbol s) throws Error { 
 		Symbol s = sym.get(ident.name);
 		if (s!=null) {
 			throw new Error(ident.pos() + ": already defined: " + ident.name);
 		}
-		sym.put(ident.name, new Symbol()); // TODO: symbol
+		sym.put(ident.name, s); 
 	}
 }
 
-final class Symbol {
+interface Symbol {
 
 }
