@@ -241,7 +241,7 @@ class Ident extends AbsNode implements Node {
 }
 
 // Integer literal, e.g.: "123"
-class IntLit extends AbsNode implements Node, NumLit {
+class IntLit extends AbsNode implements Node, NumLit, Expr {
 	long val;
 	IntLit(String pos, long val) {
 		super(pos, 0);
@@ -256,6 +256,9 @@ class IntLit extends AbsNode implements Node, NumLit {
 	}
 	public double floatValue() {
 		return val;
+	}
+	public Type[] type() {
+		return new Type[] {Type.INT};
 	}
 }
 
