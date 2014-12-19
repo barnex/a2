@@ -4,8 +4,8 @@ public final class Compiler {
 
 	static Node compile(Node n) throws Error {
 		Scope s = new Scope();
-		
-		s.declare("printi", new Func(new Type[]{Type.INT}, null));
+
+		//s.declare("printi", new Func(new Type[]{Type.INT}, null));
 
 		resolve(n, s);
 		return n;
@@ -13,10 +13,11 @@ public final class Compiler {
 
 	static void resolve(Node n, Scope s) throws Error {
 
+		// TODO: local variables
 		if (n instanceof Decl) {
 			Decl d = (Decl)(n);
 			resolve(n.children()[1], s); // resolve rhs before declaring lhs
-			s.declare(d.ident()); // TODO: type
+			s.declare(d.ident().pos(), d.ident().name, new Var());
 		}
 
 		if (n instanceof BlockStmt) {

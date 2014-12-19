@@ -19,12 +19,12 @@ public final class Scope {
 		return s;
 	}
 
-	void declare(Ident ident, Symbol s) throws Error { 
-		Symbol s = sym.get(ident.name);
-		if (s!=null) {
-			throw new Error(ident.pos() + ": already defined: " + ident.name);
+	void declare(String pos, String name, Symbol s) throws Error {
+		Symbol prev = sym.get(name);
+		if (prev!=null) {
+			throw new Error(pos + ": already defined: " + name);
 		}
-		sym.put(ident.name, s); 
+		sym.put(name, s);
 	}
 }
 
