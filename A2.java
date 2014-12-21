@@ -78,7 +78,8 @@ public final class A2 {
 			StmtList ast = Parser.parse(f, new FileInputStream(new File(f)));
 			Scope scope = new Scope();
 			Compiler.resolve(ast, scope);
-			ast.print(System.out, 0);
+			String outFname = f.substring(0, f.length()-3);
+			JBackend.generate(outFname, ast);
 		}
 	}
 
